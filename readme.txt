@@ -12,7 +12,7 @@ Test your WooCommerce shop emails with this lightweight plugin
 
 == Description ==
 
-Allows you to send tests of the WooCommerce emails to any email address.
+Allows you to send tests of the WooCommerce emails to any email address, and preview the emails within your browser.
 
 This plugin adds an "Email Test" options within your WooCommerce menu. From there, you can specify a test email address, select a test order, and send test emails for the following email types:
 New Order
