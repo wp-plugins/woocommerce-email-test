@@ -1,4 +1,4 @@
-=== ContentClick ===
+=== WooCommerce Email Test ===
 Contributors: raiserweb
 Donate link: http://raiserweb.com
 Tags: woocommerce, email test, woocommerce email test
