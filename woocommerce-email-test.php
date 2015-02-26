@@ -33,38 +33,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
- 
-if ( is_woocommerce_active() ) { 
- 
-	// include plugin files
-	include( 'functions.php' );
-	include( 'email-trigger.php' );
-	
-	// set email classes for test buttons
-	$test_email_class = array(
-		'WC_Email_New_Order'=>'New Order',
-		'WC_Email_Customer_Processing_Order'=>'Processing Order',
-		'WC_Email_Customer_Completed_Order'=>'Completed Order',
-		'WC_Email_Customer_Invoice'=>'Customer Invoice',
-		'WC_Email_Customer_New_Account'=>'New Account',
-		'WC_Email_Customer_Reset_Password'=>'Reset Password',
-		'WC_Email_Customer_Note'=>'Customer Note',
-	);
+if( function_exists( 'is_woocommerce_active' ) ) {
+	if ( is_woocommerce_active() ) { 
 	 
-	 
-	if( is_admin() ) { 
-	 
-		// register admin page and add menu
-		add_action('admin_menu', 'register_test_email_submenu_page');
-
-		function register_test_email_submenu_page() {
-			add_submenu_page( 'woocommerce', 'Email Test', 'Email Test', 'manage_options', 'woocommerce-email-test', 'register_test_email_submenu_page_callback' ); 
-		}
-
-		function register_test_email_submenu_page_callback() {
-			include( 'admin-menu.php' );
-		}
+		// include plugin files
+		include( 'functions.php' );
+		include( 'email-trigger.php' );
 		
-	}
+		// set email classes for test buttons
+		$test_email_class = array(
+			'WC_Email_New_Order'=>'New Order',
+			'WC_Email_Customer_Processing_Order'=>'Processing Order',
+			'WC_Email_Customer_Completed_Order'=>'Completed Order',
+			'WC_Email_Customer_Invoice'=>'Customer Invoice',
+			'WC_Email_Customer_New_Account'=>'New Account',
+			'WC_Email_Customer_Reset_Password'=>'Reset Password',
+			'WC_Email_Customer_Note'=>'Customer Note',
+		);
+		 
+		 
+		if( is_admin() ) { 
+		 
+			// register admin page and add menu
+			add_action('admin_menu', 'register_test_email_submenu_page');
 
+			function register_test_email_submenu_page() {
+				add_submenu_page( 'woocommerce', 'Email Test', 'Email Test', 'manage_options', 'woocommerce-email-test', 'register_test_email_submenu_page_callback' ); 
+			}
+
+			function register_test_email_submenu_page_callback() {
+				include( 'admin-menu.php' );
+			}
+			
+		}
+
+	}
 }

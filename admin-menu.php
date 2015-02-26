@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php 
 		
 		// update options if POST	
-		if( $_POST['submit'] ) {
+		if( isset( $_POST['submit'] ) ) {
 		
 			update_test_email_options();
 			
