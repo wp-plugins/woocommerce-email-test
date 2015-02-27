@@ -2,10 +2,6 @@
 
 function run_email_script(){
 
-
-	// verbose errors
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL);	
 	
 
 	// assign email address and order id variables
@@ -19,6 +15,8 @@ function run_email_script(){
 		$wc_email_test_email = get_bloginfo('admin_email');
 		
 	}
+	
+	$wc_email_test_order_id = '';
 
 	if( get_option( "wc_email_test_order_id", "false" ) ) {
 		
@@ -43,7 +41,7 @@ function run_email_script(){
 
 		// get a valid and most recent order_id ( if no order is has been selected )
 		global $wpdb;
-		$order_id_query = 'SELECT order_id FROM '.$wpdb->prefix . 'woocommerce_order_items'.' ORDER BY order_item_id DESC LIMIT 1';
+		$order_id_query = 'SELECT order_id FROM '.$wpdb->prefix.'woocommerce_order_items ORDER BY order_item_id DESC LIMIT 1';
 		$order_id = $wpdb->get_results( $order_id_query );
 		
 		if( empty( $order_id ) ) {
@@ -124,9 +122,11 @@ function show_test_email_buttons(){
 
 	global $test_email_class;
 	
+	$site_url = site_url();
+	
 	foreach( $test_email_class as $class=>$name ) {
 	
-		echo " <a href='/?woocommerce_email_test={$class}' class='button button-primary' target='_blank'>{$name}</a> ";			
+		echo " <a href='{$site_url}/?woocommerce_email_test={$class}' class='button button-primary' target='_blank'>{$name}</a> ";			
 
 	} 
 }
