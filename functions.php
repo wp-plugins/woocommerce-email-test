@@ -16,23 +16,14 @@ function run_email_script(){
 		
 	}
 	
-	$wc_email_test_order_id = '';
-
-	if( get_option( "wc_email_test_order_id", "false" ) ) {
 		
-		if( get_option( "wc_email_test_order_id", "false" ) == 'recent' ){
-		
-			$wc_email_test_order_id = '';
-			
-		} else {
-		
-			$wc_email_test_order_id = get_option( "wc_email_test_order_id", "false" );
-			
-		}
+	if( get_option( "wc_email_test_order_id", "false" ) == 'recent' ){
+	
+		$wc_email_test_order_id = '';
 		
 	} else {
 	
-		$wc_email_test_order_id = '';
+		$wc_email_test_order_id = get_option( "wc_email_test_order_id", "false" );
 		
 	}	
 	
@@ -57,29 +48,34 @@ function run_email_script(){
 	
 	}
 
-
-
 	// the email type to send
 	$email_class = get_query_var('woocommerce_email_test');
 
+	$for_filter = strtolower( str_replace( 'WC_Email_', '' , $email_class ) );
 
-
-
-	// change email address within order to saved option
-	add_filter( 'woocommerce_email_recipient_customer_completed_order', 'your_email_recipient_filter_function', 10, 2);
+	// change email address within order to saved option	
+	add_filter( 'woocommerce_email_recipient_'.$for_filter , 'your_email_recipient_filter_function', 10, 2);
 	function your_email_recipient_filter_function($recipient, $object) {
 		global $wc_email_test_email;
 		$recipient = $wc_email_test_email;
 		return $recipient;
 	}
 
-
-
-
+	// change subject link	
+	add_filter('woocommerce_email_subject_'.$for_filter , 'change_admin_email_subject', 1, 2);	 
+	function change_admin_email_subject( $subject, $order ) {
+		global $woocommerce;	 
+		$subject = "TEST EMAIL: ".$subject;		
+		return $subject;
+	} 	
+	
+	if( isset( $GLOBALS['wc_advanced_notifications'] ) ) {
+		unset( $GLOBALS['wc_advanced_notifications'] );
+	}
+	
 	// load the email classs
 	$wc_emails = new WC_Emails();
 	$emails = $wc_emails->get_emails();
-
 
 	// select the email we want & send
 	$new_email = $emails[ $email_class ];

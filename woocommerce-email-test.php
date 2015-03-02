@@ -46,8 +46,6 @@ if( function_exists( 'is_woocommerce_active' ) ) {
 			'WC_Email_Customer_Processing_Order'=>'Processing Order',
 			'WC_Email_Customer_Completed_Order'=>'Completed Order',
 			'WC_Email_Customer_Invoice'=>'Customer Invoice',
-			'WC_Email_Customer_New_Account'=>'New Account',
-			'WC_Email_Customer_Reset_Password'=>'Reset Password',
 			'WC_Email_Customer_Note'=>'Customer Note',
 		);
 		 
