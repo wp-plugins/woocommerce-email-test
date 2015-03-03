@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // run the script based on the trigger GET value populated
 
-if ( is_woocommerce_active() ) { 
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	
 	add_filter( 'query_vars', 'plugin_add_trigger' );
 	function plugin_add_trigger( $vars ) {
