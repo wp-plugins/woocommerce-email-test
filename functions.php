@@ -28,7 +28,7 @@ function run_email_script(){
 	}	
 	
 
-	if( $wc_email_test_order_id == '' ) {		
+	if( $wc_email_test_order_id == 'false' ) {		
 
 		// get a valid and most recent order_id ( if no order is has been selected )
 		global $wpdb;
