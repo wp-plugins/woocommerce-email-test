@@ -80,7 +80,7 @@ function run_email_script(){
 	// select the email we want & send
 	$new_email = $emails[ $email_class ];
 
-	$new_email->trigger( $wc_email_test_order_id );
+	//$new_email->trigger( $wc_email_test_order_id );
 
 	// echo the email content for browser
 	echo $new_email->get_content();
