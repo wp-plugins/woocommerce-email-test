@@ -164,7 +164,7 @@ function get_test_email_options() {
 
 	if( get_option( "wc_email_test_email", "false" ) ) {
 	
-		$return['wc_email_test_email'] = get_option( "wc_email_test_email", "false" );
+		$return['wc_email_test_email'] = get_option( "wc_email_test_email", "" );
 		
 	} else {
 	
