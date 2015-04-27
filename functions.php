@@ -6,9 +6,9 @@ function run_email_script(){
 
 	// assign email address and order id variables
 	
-	if( get_option( "wc_email_test_email", "false" ) ) {
+	if( get_option( "wc_email_test_email", false ) ) {
 	
-		$wc_email_test_email = get_option( "wc_email_test_email", "false" );
+		$wc_email_test_email = get_option( "wc_email_test_email", false );
 		
 	} else {
 	
@@ -17,18 +17,18 @@ function run_email_script(){
 	}
 	
 		
-	if( get_option( "wc_email_test_order_id", "false" ) == 'recent' ){
+	if( get_option( "wc_email_test_order_id", false ) == 'recent' ){
 	
 		$wc_email_test_order_id = '';
 		
 	} else {
 	
-		$wc_email_test_order_id = get_option( "wc_email_test_order_id", "false" );
+		$wc_email_test_order_id = get_option( "wc_email_test_order_id", false );
 		
 	}	
 	
 
-	if( $wc_email_test_order_id == 'false' ) {		
+	if( ! $wc_email_test_order_id ) {		
 
 		// get a valid and most recent order_id ( if no order is has been selected )
 		global $wpdb;
@@ -42,7 +42,7 @@ function run_email_script(){
 		
 		} else {
 		
-			$wc_email_test_order_id = $order_id[0]->order_id ;
+			 $wc_email_test_order_id = $order_id[0]->order_id ;
 			
 		}
 	
@@ -74,13 +74,16 @@ function run_email_script(){
 	}
 	
 	// load the email classs
-	$wc_emails = new WC_Emails();
+	$wc_emails = new WC_Emails( );
 	$emails = $wc_emails->get_emails();
 
 	// select the email we want & send
 	$new_email = $emails[ $email_class ];
+	
+	// make sure email isn't sent
+	apply_filters( 'woocommerce_email_enabled_' . $for_filter, false, $new_email->object ); 
 
-	//$new_email->trigger( $wc_email_test_order_id );
+	$new_email->trigger( $wc_email_test_order_id );
 
 	// echo the email content for browser
 	echo $new_email->get_content();
