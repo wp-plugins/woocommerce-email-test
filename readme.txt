@@ -8,7 +8,7 @@ Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Test your WooCommerce shop emails with this lightweight plugin
+Preview (browser) your WooCommerce shop emails with this lightweight plugin
 
 == Description ==
 
@@ -23,13 +23,18 @@ Customer Note
 
 Note - this plugin only works with WooCommerce. 
 
+New feature being developed to let you send test emails to your inbox. Release pending.
+
 == Frequently Asked Questions ==
 
 Does this plugin send emails?
-No
+No not yet
 
 Will existing customers see test emails in their inbox?
 No
+
+How do I see emails?
+In your web browser. Very handy to check the content of WooCommerce emails, without needing to place test orders.
 
 
 == Installation ==
