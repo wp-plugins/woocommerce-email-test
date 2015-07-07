@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Email Test
  * Plugin URI: 
  * Description: Let's you send WooCommerce test emails.
- * Version:  1.2
+ * Version:  1.3
  * Author: RaiserWeb
  * Author URI: http://www.raiserweb.com
  * Developer: RaiserWeb

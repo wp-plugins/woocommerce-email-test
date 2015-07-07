@@ -86,7 +86,7 @@ function run_email_script(){
 	$new_email->trigger( $wc_email_test_order_id );
 
 	// echo the email content for browser
-	echo $new_email->get_content();
+	echo $new_email->style_inline( $new_email->get_content() );
 
 }
 
